@@ -10,17 +10,20 @@ interface FreteResponse {
   preco: number;
 }
 
-function calcularDistanciaSimulada(origem: string, destino: string): number {
-  const hashOrigem = origem
-    .split("")
-    .reduce((acc, char) => acc + char.charCodeAt(0), 0);
-  const hashDestino = destino
-    .split("")
-    .reduce((acc, char) => acc + char.charCodeAt(0), 0);
+// Endereço fixo de partida
+const ENDERECO_ORIGEM = "Rua Barao de Duprat 535, São Paulo, Brasil";
 
-  const distancia = Math.abs(hashOrigem - hashDestino) / 10;
-
-  return Math.max(0.5, Math.min(distancia, 50));
+function calcularDistanciaConsistente(destino: string): number {
+  // Método mais consistente baseado em hash do destino
+  let hash = 0;
+  for (let i = 0; i < destino.length; i++) {
+    hash = ((hash << 5) - hash) + destino.charCodeAt(i);
+    hash = hash & hash; // Convert to 32-bit integer
+  }
+  
+  // Gera distância entre 1km e 30km de forma mais previsível
+  const distancia = (Math.abs(hash) % 3000) / 100 + 1;
+  return Math.max(1, Math.min(distancia, 30));
 }
 
 function gerarDistanciaAleatoria(): number {
@@ -28,21 +31,25 @@ function gerarDistanciaAleatoria(): number {
 }
 
 function calcularDuracao(distanciaKm: number): number {
-  return distanciaKm * 2.5;
+  // Considera trânsito: 3-4 minutos por km
+  const velocidadeMedia = 25; // km/h em trânsito urbano
+  return (distanciaKm / velocidadeMedia) * 60;
 }
 
 function calcularPreco(distanciaKm: number): number {
-  let preco = 5 + distanciaKm * 2.5;
-
-  if (preco < 10) {
-    preco = 10;
+  // Preço base + valor por km
+  let preco = 8 + distanciaKm * 2.2;
+  
+  // Preço mínimo
+  if (preco < 12) {
+    preco = 12;
   }
-
+  
+  // Taxa de serviço (15%)
   preco *= 1.15;
-
-  preco = Math.round(preco * 100) / 100;
-
-  return preco;
+  
+  // Arredonda para 2 casas decimais
+  return Math.round(preco * 100) / 100;
 }
 
 Deno.serve(async (req: Request) => {
@@ -55,17 +62,25 @@ Deno.serve(async (req: Request) => {
 
   try {
     const url = new URL(req.url);
-    const origem = url.searchParams.get("origem");
     const destino = url.searchParams.get("destino");
 
-    let distanciaKm: number;
-
-    if (origem && destino) {
-      distanciaKm = calcularDistanciaSimulada(origem, destino);
-    } else {
-      distanciaKm = gerarDistanciaAleatoria();
+    if (!destino) {
+      return new Response(
+        JSON.stringify({
+          erro: "Parâmetro 'destino' é obrigatório"
+        }),
+        {
+          status: 400,
+          headers: {
+            ...corsHeaders,
+            "Content-Type": "application/json",
+          },
+        }
+      );
     }
 
+    // Sempre usa o endereço fixo como origem
+    const distanciaKm = calcularDistanciaConsistente(destino);
     const duracaoMin = calcularDuracao(distanciaKm);
     const preco = calcularPreco(distanciaKm);
 

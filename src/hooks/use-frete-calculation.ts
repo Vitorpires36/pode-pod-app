@@ -13,7 +13,8 @@ interface FreteState {
 }
 
 const STORE_ADDRESS = 'Rua Barao de Duprat, 353, Sao Paulo, Brazil';
-const API_BASE_URL = 'http://localhost:4000';
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
+const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
 export const useFreteCalculation = () => {
   const [frete, setFrete] = useState<FreteState>({
@@ -40,7 +41,14 @@ export const useFreteCalculation = () => {
         destino: enderecoEntrega,
       });
 
-      const response = await fetch(`${API_BASE_URL}/api/frete?${params}`);
+      const apiUrl = `${SUPABASE_URL}/functions/v1/calcular-frete?${params}`;
+
+      const response = await fetch(apiUrl, {
+        headers: {
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+          'Content-Type': 'application/json',
+        },
+      });
 
       if (!response.ok) {
         throw new Error('Erro ao calcular frete');

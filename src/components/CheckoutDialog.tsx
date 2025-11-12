@@ -121,7 +121,7 @@ export const CheckoutDialog = ({ open, onOpenChange }: CheckoutDialogProps) => {
 
   // Cálculos
   const valorFrete = selectedBairro ? selectedBairro.valorBase : 0;
-  const freteGratis = total >= 100;
+  const freteGratis = total >= 300;
   const totalComFrete = freteGratis ? total : total + valorFrete;
 
   const handleCopyPix = () => {
@@ -145,7 +145,7 @@ export const CheckoutDialog = ({ open, onOpenChange }: CheckoutDialogProps) => {
 
   const handleSendWhatsApp = () => {
     const freteTexto = freteGratis 
-      ? 'GRÁTIS (pedido acima de R$ 100)' 
+      ? 'GRÁTIS (pedido acima de R$ 300)' 
       : `R$ ${valorFrete.toFixed(2)}`;
 
     const message = `🛍️ *Novo Pedido - PODE POD*\n\n` +
@@ -337,7 +337,7 @@ export const CheckoutDialog = ({ open, onOpenChange }: CheckoutDialogProps) => {
                 <div className="flex gap-2">
                   <AlertCircle className="h-4 w-4 text-yellow-500 flex-shrink-0 mt-0.5" />
                   <span className="text-sm text-yellow-600 dark:text-yellow-400">
-                    Faltam R$ {(100 - total).toFixed(2)} para frete grátis!
+                    Faltam R$ {(300 - total).toFixed(2)} para frete grátis!
                   </span>
                 </div>
               </div>

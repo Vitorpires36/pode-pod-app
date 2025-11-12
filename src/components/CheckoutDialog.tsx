@@ -1,6 +1,7 @@
+// src/components/CheckoutDialog.tsx
+
 import { useState, useEffect } from 'react';
 import { useCart } from '@/contexts/CartContext';
-import { useFreteCalculation } from '@/hooks/use-frete-calculation';
 import {
   Dialog,
   DialogContent,
@@ -10,8 +11,10 @@ import {
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Copy, Check, MessageCircle, Truck, AlertCircle } from 'lucide-react';
+import { Copy, Check, MessageCircle, AlertCircle } from 'lucide-react';
 import { toast } from 'sonner';
+import { BairroSelector } from '@/components/BairroSelector';
+import type { BairroSP } from '@/lib/bairros';
 
 interface CheckoutDialogProps {
   open: boolean;
@@ -20,13 +23,12 @@ interface CheckoutDialogProps {
 
 export const CheckoutDialog = ({ open, onOpenChange }: CheckoutDialogProps) => {
   const { cart, total, clearCart } = useCart();
-  const { loading: freteLoading, data: freteData, error: freteError, calcularFrete } = useFreteCalculation();
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
-  const [address, setAddress] = useState('');
+  const [endereco, setEndereco] = useState('');
+  const [selectedBairro, setSelectedBairro] = useState<BairroSP | null>(null);
   const [copied, setCopied] = useState(false);
   const [step, setStep] = useState<'form' | 'pix'>('form');
-  const [calculandoFrete, setCalculandoFrete] = useState(false);
 
   const pixKey = '5511948453681';
 
@@ -34,13 +36,15 @@ export const CheckoutDialog = ({ open, onOpenChange }: CheckoutDialogProps) => {
     if (open) {
       setName('');
       setPhone('');
-      setAddress('');
+      setEndereco('');
+      setSelectedBairro(null);
       setStep('form');
-      setCalculandoFrete(false);
     }
   }, [open]);
 
-  const totalComFrete = freteData ? total + freteData.preco : total;
+  const valorFrete = selectedBairro ? selectedBairro.valorBase : 0;
+  const freteGratis = total >= 100;
+  const totalComFrete = freteGratis ? total : total + valorFrete;
 
   const handleCopyPix = () => {
     navigator.clipboard.writeText(pixKey);
@@ -49,46 +53,37 @@ export const CheckoutDialog = ({ open, onOpenChange }: CheckoutDialogProps) => {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const handleCalcularFrete = async () => {
-    if (!address.trim()) {
-      toast.error('Preencha o endereço de entrega!');
-      return;
-    }
-    setCalculandoFrete(true);
-    const resultado = await calcularFrete(address);
-    setCalculandoFrete(false);
-    if (resultado) {
-      toast.success(`Frete calculado: ${resultado.duracaoMin} min aprox.`);
-    } else if (freteError) {
-      toast.error(`Erro ao calcular frete: ${freteError}`);
-    }
-  };
-
   const handleGeneratePix = () => {
-    if (!name || !phone || !address) {
+    if (!name || !phone || !endereco) {
       toast.error('Preencha todos os campos!');
       return;
     }
-    if (!freteData) {
-      toast.error('Calcule o frete antes de continuar!');
+    if (!selectedBairro) {
+      toast.error('Selecione seu bairro!');
       return;
     }
     setStep('pix');
   };
 
   const handleSendWhatsApp = () => {
+    const freteTexto = freteGratis 
+      ? 'GRÁTIS (pedido acima de R$ 100)' 
+      : `R$ ${valorFrete.toFixed(2)}`;
+
     const message = `🛍️ *Novo Pedido - PODE POD*\n\n` +
       `👤 *Nome:* ${name}\n` +
       `📱 *Telefone:* ${phone}\n` +
-      `📍 *Endereço:* ${address}\n` +
-      `🚚 *Prazo Entrega:* ${freteData?.duracaoMin} minutos aprox.\n\n` +
+      `📍 *Endereço:* ${endereco}\n` +
+      `🏘️ *Bairro:* ${selectedBairro?.nome} (${selectedBairro?.zona})\n` +
+      `📏 *Distância:* ${selectedBairro?.distanciaKm.toFixed(1)} km\n` +
+      `🚚 *Prazo Entrega:* ~${selectedBairro?.tempoEntregaMin} minutos\n\n` +
       `*Produtos:*\n` +
       cart.map(item =>
         `• ${item.quantity}x ${item.name}${item.selectedFlavor ? ` (${item.selectedFlavor})` : ''} - R$ ${(item.price * item.quantity).toFixed(2)}`
       ).join('\n') +
       `\n\n*Resumo:*\n` +
       `💳 Subtotal: R$ ${total.toFixed(2)}\n` +
-      `🚚 Frete: R$ ${freteData?.preco.toFixed(2)}\n` +
+      `🚚 Frete: ${freteTexto}\n` +
       `💰 *Total:* R$ ${totalComFrete.toFixed(2)}\n\n` +
       `✅ Pagamento via PIX confirmado!`;
 
@@ -103,7 +98,7 @@ export const CheckoutDialog = ({ open, onOpenChange }: CheckoutDialogProps) => {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="bg-card border-border max-w-md">
+      <DialogContent className="bg-card border-border max-w-2xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-foreground text-xl">
             {step === 'form' ? 'Finalizar Pedido' : 'Pagamento PIX'}
@@ -112,6 +107,7 @@ export const CheckoutDialog = ({ open, onOpenChange }: CheckoutDialogProps) => {
 
         {step === 'form' ? (
           <div className="space-y-4 py-4">
+            {/* Dados Pessoais */}
             <div className="space-y-2">
               <Label htmlFor="name" className="text-foreground">Nome Completo</Label>
               <Input
@@ -135,48 +131,47 @@ export const CheckoutDialog = ({ open, onOpenChange }: CheckoutDialogProps) => {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="address" className="text-foreground">Endereço de Entrega</Label>
-              <div className="flex gap-2">
-                <Input
-                  id="address"
-                  placeholder="Rua, número, bairro"
-                  value={address}
-                  onChange={(e) => setAddress(e.target.value)}
-                  className="bg-background border-border text-foreground"
-                />
-                <Button
-                  onClick={handleCalcularFrete}
-                  disabled={!address.trim() || calculandoFrete || freteLoading}
-                  variant="outline"
-                  size="sm"
-                  className="px-3"
-                  title="Calcular frete"
-                >
-                  <Truck className="h-4 w-4" />
-                </Button>
-              </div>
+              <Label htmlFor="endereco" className="text-foreground">
+                Endereço Completo (Rua, Número, Complemento)
+              </Label>
+              <Input
+                id="endereco"
+                placeholder="Rua Exemplo, 123, Apto 45"
+                value={endereco}
+                onChange={(e) => setEndereco(e.target.value)}
+                className="bg-background border-border text-foreground"
+              />
             </div>
 
-            {freteError && (
-              <div className="bg-destructive/10 border border-destructive/20 p-3 rounded-lg flex gap-2">
-                <AlertCircle className="h-4 w-4 text-destructive flex-shrink-0 mt-0.5" />
-                <span className="text-sm text-destructive">{freteError}</span>
+            {/* Seletor de Bairro */}
+            <div className="border-t border-border pt-4">
+              <BairroSelector 
+                onSelect={setSelectedBairro}
+                selectedBairro={selectedBairro}
+              />
+            </div>
+
+            {/* Aviso Frete Grátis */}
+            {!freteGratis && total < 100 && selectedBairro && (
+              <div className="bg-yellow-500/10 border border-yellow-500/20 p-3 rounded-lg">
+                <div className="flex gap-2">
+                  <AlertCircle className="h-4 w-4 text-yellow-500 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm text-yellow-600 dark:text-yellow-400">
+                    Faltam R$ {(100 - total).toFixed(2)} para frete grátis!
+                  </span>
+                </div>
               </div>
             )}
 
-            {freteData && (
-              <div className="bg-blue-500/10 border border-blue-500/20 p-3 rounded-lg space-y-1">
-                <div className="flex justify-between text-sm">
-                  <span className="text-muted-foreground">Distância</span>
-                  <span className="font-semibold text-foreground">{freteData.distanciaKm} km</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-muted-foreground">Tempo estimado</span>
-                  <span className="font-semibold text-foreground">{freteData.duracaoMin} min</span>
-                </div>
+            {freteGratis && (
+              <div className="bg-green-500/10 border border-green-500/20 p-3 rounded-lg">
+                <p className="text-sm font-semibold text-green-600 dark:text-green-400 text-center">
+                  🎉 Você ganhou FRETE GRÁTIS!
+                </p>
               </div>
             )}
 
+            {/* Resumo */}
             <div className="bg-muted p-4 rounded-lg space-y-2">
               <div className="flex justify-between text-sm">
                 <span className="text-muted-foreground">Subtotal</span>
@@ -185,9 +180,23 @@ export const CheckoutDialog = ({ open, onOpenChange }: CheckoutDialogProps) => {
               <div className="flex justify-between text-sm">
                 <span className="text-muted-foreground">Entrega</span>
                 <span className="font-semibold text-foreground">
-                  {freteData ? `R$ ${freteData.preco.toFixed(2)}` : '–'}
+                  {selectedBairro ? (
+                    freteGratis ? (
+                      <span className="text-green-500 font-bold">GRÁTIS</span>
+                    ) : (
+                      `R$ ${valorFrete.toFixed(2)}`
+                    )
+                  ) : (
+                    '–'
+                  )}
                 </span>
               </div>
+              {selectedBairro && (
+                <div className="flex justify-between text-xs text-muted-foreground">
+                  <span>Tempo estimado</span>
+                  <span>~{selectedBairro.tempoEntregaMin} minutos</span>
+                </div>
+              )}
               <div className="border-t border-border pt-2 flex justify-between font-bold">
                 <span className="text-foreground">Total</span>
                 <span className="text-primary text-lg">R$ {totalComFrete.toFixed(2)}</span>
@@ -196,7 +205,7 @@ export const CheckoutDialog = ({ open, onOpenChange }: CheckoutDialogProps) => {
 
             <Button
               onClick={handleGeneratePix}
-              disabled={!freteData}
+              disabled={!selectedBairro}
               className="w-full"
               size="lg"
             >
@@ -237,7 +246,7 @@ export const CheckoutDialog = ({ open, onOpenChange }: CheckoutDialogProps) => {
                 Valor a pagar
               </p>
               <p className="text-2xl font-bold text-foreground">
-                R$ {total.toFixed(2)}
+                R$ {totalComFrete.toFixed(2)}
               </p>
             </div>
 

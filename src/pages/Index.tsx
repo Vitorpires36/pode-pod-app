@@ -41,7 +41,7 @@ const Index = () => {
 
       {/* Conteúdo Principal - Pods */}
       <main className="container mx-auto px-4 py-8">
-        <h2 className="text-2xl font-bold text-primary mb-6">Vapes & Pods</h2>
+        <h2 className="text-2xl font-bold text-primary mb-6">Pods</h2>
         
         <Tabs defaultValue="all" className="w-full mb-8">
           <TabsList className="grid w-full grid-cols-5 lg:grid-cols-10 mb-6 bg-card">
@@ -84,7 +84,7 @@ const Index = () => {
       <section className="bg-gradient-to-b from-background to-card py-12 border-t-2 border-accent">
         <div className="container mx-auto px-4">
           <h2 className="text-2xl font-bold text-accent mb-6 text-center">
-            🔥 Tabacaria
+            HEAD SHOP CAN SMOKE
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
             {tabacariaProducts.map((product) => (
@@ -97,7 +97,7 @@ const Index = () => {
       {/* Footer */}
       <footer className="bg-black text-white text-center py-6 mt-12 border-t-2 border-primary">
         <p className="text-sm">
-          © 2024 PODE POD - Todos os direitos reservados
+          © 2025 PODE POD - Todos os direitos reservados
         </p>
         <p className="text-xs text-muted-foreground mt-2">
           Venda proibida para menores de 18 anos

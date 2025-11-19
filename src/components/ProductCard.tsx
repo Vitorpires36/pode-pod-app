@@ -46,10 +46,11 @@ export const ProductCard = ({ product, isTabacaria = false }: ProductCardProps) 
       <CardContent className="p-0">
         <div className="relative">
           <img
-            src={product.image}
-            alt={product.name}
-            className="w-full h-32 object-cover bg-muted"
-          />
+  src={product.image}
+  alt={product.name}
+  className="w-full h-40 object-contain bg-muted p-2"
+/>
+
           {product.puffs && (
             <Badge className="absolute top-2 right-2 bg-secondary text-secondary-foreground">
               {product.puffs} Puffs

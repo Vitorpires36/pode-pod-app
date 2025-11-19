@@ -28,18 +28,6 @@ export const products: Product[] = [
   flavors: ["Berry Mix", "Strawberry Ice", "Mango Ice", "Ice Mint"]
 },
 {
-  id: "ignite-v120-12k",
-  name: "IGNITE V120 12K",
-  description: "12.000 PUFFS - Alta performance + Display Digital",
-  price: 94.90,
-  image: "/IGNITEV120.png",
-  category: "pod",
-  brand: "Ignite",
-  puffs: "12000",
-  inStock: true,
-  flavors: ["Strawberry Ice", "Grape Ice", "Watermelon Ice", "Blue Razz"]
-},
-{
   id: "ignite-v150-15k",
   name: "IGNITE V150 15K",
   description: "15.000 PUFFS - Potência e longa duração",
@@ -48,6 +36,18 @@ export const products: Product[] = [
   category: "pod",
   brand: "Ignite",
   puffs: "15000",
+  inStock: true,
+  flavors: ["Ice Mint", "Berry Mix", "Banana Ice", "Grape Ice"]
+},
+  {
+  id: "ignite-v250-25k",
+  name: "IGNITE V250 25K",
+  description: "25.000 PUFFS - Potência e longa duração",
+  price: 104.90,
+  image: "/IGNITEV250.png",
+  category: "pod",
+  brand: "Ignite",
+  puffs: "25000",
   inStock: true,
   flavors: ["Ice Mint", "Berry Mix", "Banana Ice", "Grape Ice"]
 },

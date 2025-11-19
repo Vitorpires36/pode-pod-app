@@ -2,55 +2,67 @@ import { Product } from "@/types/product";
 
 export const products: Product[] = [
   // IGNITE
-  {
-    id: "ignite-v50-5k",
-    name: "IGNITE V50 5K",
-    description: "5.000 PUFFS - Tela LED + Controle de Airflow",
-    price: 54.90,
-    image: "https://images.unsplash.com/photo-1606941525941-8b15e6a5c4f0?w=400&h=400&fit=crop",
-    category: "pod",
-    brand: "Ignite",
-    puffs: "5000",
-    inStock: true,
-    flavors: ["Morango", "Uva", "Menta", "Melancia", "Limão"]
-  },
-  {
-    id: "ignite-v50-15k",
-    name: "IGNITE V50 15K",
-    description: "15.000 PUFFS - Tela LED + Controle de Airflow",
-    price: 64.90,
-    image: "https://images.unsplash.com/photo-1606941525941-8b15e6a5c4f0?w=400&h=400&fit=crop",
-    category: "pod",
-    brand: "Ignite",
-    puffs: "15000",
-    inStock: true,
-    flavors: ["Blue Razz", "Strawberry Banana", "Grape Ice", "Watermelon Ice"]
-  },
-  {
-    id: "ignite-v80",
-    name: "IGNITE V80 8K",
-    description: "8.000 PUFFS - Tela LED",
-    price: 74.90,
-    image: "https://images.unsplash.com/photo-1606941525941-8b15e6a5c4f0?w=400&h=400&fit=crop",
-    category: "pod",
-    brand: "Ignite",
-    puffs: "8000",
-    inStock: true,
-    flavors: ["Peach Mango", "Lychee Ice", "Mint", "Grape"]
-  },
-  {
-    id: "ignite-v150",
-    name: "IGNITE V150 15K",
-    description: "15.000 PUFFS - Mega Bateria 850mAh",
-    price: 84.90,
-    image: "https://images.unsplash.com/photo-1606941525941-8b15e6a5c4f0?w=400&h=400&fit=crop",
-    category: "pod",
-    brand: "Ignite",
-    puffs: "15000",
-    inStock: true,
-    flavors: ["Mixed Berries", "Tropical Punch", "Cool Mint", "Watermelon"]
-  },
-
+  // ---------------- IGNITE ----------------
+{
+  id: "ignite-v50-5k",
+  name: "IGNITE V50 5K",
+  description: "5.000 PUFFS - Compacto e potente",
+  price: 49.90,
+  image: "/IGNITEV50.png",
+  category: "pod",
+  brand: "Ignite",
+  puffs: "5000",
+  inStock: true,
+  flavors: ["Grape Ice", "Blue Razz", "Watermelon Ice", "Peach Ice"]
+},
+{
+  id: "ignite-v80-8k",
+  name: "IGNITE V80 8K",
+  description: "8.000 PUFFS - Fluxo de ar suave + alta durabilidade",
+  price: 59.90,
+  image: "/IGNITEV80.png",
+  category: "pod",
+  brand: "Ignite",
+  puffs: "8000",
+  inStock: true,
+  flavors: ["Berry Mix", "Strawberry Ice", "Mango Ice", "Ice Mint"]
+},
+{
+  id: "ignite-v120-12k",
+  name: "IGNITE V120 12K",
+  description: "12.000 PUFFS - Alta performance + Display Digital",
+  price: 94.90,
+  image: "/IGNITEV120.png",
+  category: "pod",
+  brand: "Ignite",
+  puffs: "12000",
+  inStock: true,
+  flavors: ["Strawberry Ice", "Grape Ice", "Watermelon Ice", "Blue Razz"]
+},
+{
+  id: "ignite-v150-15k",
+  name: "IGNITE V150 15K",
+  description: "15.000 PUFFS - Potência e longa duração",
+  price: 109.90,
+  image: "/IGNITEV150.png",
+  category: "pod",
+  brand: "Ignite",
+  puffs: "15000",
+  inStock: true,
+  flavors: ["Ice Mint", "Berry Mix", "Banana Ice", "Grape Ice"]
+},
+{
+  id: "ignite-v400-40k",
+  name: "IGNITE V400 40K",
+  description: "40.000 PUFFS - Ultra bateria + fluxo ajustável",
+  price: 159.90,
+  image: "/IGNITEV400.png",
+  category: "pod",
+  brand: "Ignite",
+  puffs: "40000",
+  inStock: true,
+  flavors: ["Ice Mint", "Mango Ice", "Berry Mix", "Watermelon Bubblegum"]
+},
   // ELF BAR
   {
     id: "elfbar-bc5000",

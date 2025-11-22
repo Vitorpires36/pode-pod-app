@@ -76,18 +76,6 @@ export const products: Product[] = [
     inStock: true,
     flavors: ["Morango Kiwi", "Mirtilo", "Manga", "Maracujá", "Framboesa"]
   },
-  {
-    id: "elfbar-ew9000",
-    name: "ELFBAR 10K",
-    description: "10.000 PUFFS - Design Premium",
-    price: 79.90,
-    image: "/ELFBAR8K.png",
-    category: "pod",
-    brand: "Elf Bar",
-    puffs: "10000",
-    inStock: true,
-    flavors: ["Morango Kiwi", "Mirtilo", "Manga", "Maracujá", "Framboesa"]
-  },
   
   {
     id: "elfbar-tc10000",
@@ -101,18 +89,7 @@ export const products: Product[] = [
     inStock: true,
     flavors: ["Blue Razz Ice", "Strawberry Ice", "Mango Ice"]
   },
-  {
-    id: "elfbar-ew10000",
-    name: "ELFBAR EW KIT",
-    description: "10.000 PUFFS",
-    price: 79.90,
-    image: "/ELFBAR10K.png",
-    category: "pod",
-    brand: "Elf Bar",
-    puffs: "10000",
-    inStock: true,
-    flavors: ["Watermelon Ice", "Peach Ice", "Grape Ice"]
-  },
+  
   {
     id: "elfbar-ew-kit-16k",
     name: "ELFBAR EW KIT",

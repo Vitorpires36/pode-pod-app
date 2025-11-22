@@ -95,7 +95,7 @@ export const products: Product[] = [
     name: "ELFBAR EW KIT",
     description: "16.000 PUFFS - Sistema POD Recarregável",
     price: 94.90,
-    image: "/ELFBAR16K.png",
+    image: "/ELFEW16K.png",
     category: "pod",
     brand: "Elf Bar",
     puffs: "16000",

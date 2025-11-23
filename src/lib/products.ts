@@ -233,26 +233,14 @@ export const products: Product[] = [
 
   // SEX ADDICT
   {
-    id: "sex-addict-5k",
-    name: "SEX ADDICT 5K",
-    description: "5.000 PUFFS",
-    price: 54.90,
+    id: "sex-addict-28k",
+    name: "SEX ADDICT 28K",
+    description: "28.000 PUFFS - Tela LED",
+    price: 99.90,
     image: "https://images.unsplash.com/photo-1606941525941-8b15e6a5c4f0?w=400&h=400&fit=crop",
     category: "pod",
     brand: "Sex Addict",
-    puffs: "5000",
-    inStock: true,
-    flavors: ["Strawberry", "Blueberry", "Grape Ice"]
-  },
-  {
-    id: "sex-addict-8k",
-    name: "SEX ADDICT 8K",
-    description: "8.000 PUFFS - Tela LED",
-    price: 64.90,
-    image: "https://images.unsplash.com/photo-1606941525941-8b15e6a5c4f0?w=400&h=400&fit=crop",
-    category: "pod",
-    brand: "Sex Addict",
-    puffs: "8000",
+    puffs: "28000",
     inStock: true,
     flavors: ["Watermelon", "Peach Ice", "Mint"]
   },

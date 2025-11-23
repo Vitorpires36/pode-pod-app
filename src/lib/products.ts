@@ -155,38 +155,38 @@ export const products: Product[] = [
 
   // LOST MARY
   {
-    id: "lostmary-bm5000",
-    name: "LOST MARY BM5000",
-    description: "5.000 PUFFS - Design Exclusivo",
-    price: 59.90,
-    image: "https://images.unsplash.com/photo-1606941525941-8b15e6a5c4f0?w=400&h=400&fit=crop",
-    category: "pod",
-    brand: "Lost Mary",
-    puffs: "5000",
-    inStock: true,
-    flavors: ["Morango Melancia", "Uva Ice", "Limonada", "Blueberry", "Pêssego"]
-  },
-  {
-    id: "lostmary-os5000",
-    name: "LOST MARY OS5000",
-    description: "5.000 PUFFS",
-    price: 64.90,
-    image: "https://images.unsplash.com/photo-1606941525941-8b15e6a5c4f0?w=400&h=400&fit=crop",
-    category: "pod",
-    brand: "Lost Mary",
-    puffs: "5000",
-    inStock: true,
-    flavors: ["Kiwi Passion", "Cherry Ice", "Pineapple Ice"]
-  },
-  {
-    id: "lostmary-mo10000",
-    name: "LOST MARY MO10000",
-    description: "10.000 PUFFS - Bateria Potente",
+    id: "lostmary-20000",
+    name: "LOSTMARY 20K ",
+    description: "20.000 PUFFS",
     price: 79.90,
     image: "https://images.unsplash.com/photo-1606941525941-8b15e6a5c4f0?w=400&h=400&fit=crop",
     category: "pod",
     brand: "Lost Mary",
-    puffs: "10000",
+    puffs: "20000",
+    inStock: true,
+    flavors: ["Morango Melancia", "Uva Ice", "Limonada", "Blueberry", "Pêssego"]
+  },
+  {
+    id: "lostmary-25000",
+    name: "LOST MARY 25K",
+    description: "25.000 PUFFS",
+    price: 84.90,
+    image: "https://images.unsplash.com/photo-1606941525941-8b15e6a5c4f0?w=400&h=400&fit=crop",
+    category: "pod",
+    brand: "Lost Mary",
+    puffs: "25000",
+    inStock: true,
+    flavors: ["Kiwi Passion", "Cherry Ice", "Pineapple Ice"]
+  },
+  {
+    id: "lostmary-30000",
+    name: "LOST MARY 30K",
+    description: "30.000 PUFFS",
+    price: 79.90,
+    image: "https://images.unsplash.com/photo-1606941525941-8b15e6a5c4f0?w=400&h=400&fit=crop",
+    category: "pod",
+    brand: "Lost Mary",
+    puffs: "30000",
     inStock: true,
     flavors: ["Double Apple", "Mango Peach", "Watermelon Lemon"]
   },

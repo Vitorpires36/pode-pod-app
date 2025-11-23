@@ -13,7 +13,7 @@ export const products: Product[] = [
   brand: "Ignite",
   puffs: "5000",
   inStock: true,
-  flavors: ["Grape Ice", "Blue Razz", "Watermelon Ice", "Peach Ice"]
+  flavors: ["Blue Rasberry Ice", "Strawberry Banana", "Blue Dream", "Strawberry Watermelon", "Strawberry Mango", "Watermelon Ice", "Peach Mango Watermelon"]
 },
 {
   id: "ignite-v80-8k",

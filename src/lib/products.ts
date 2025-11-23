@@ -25,7 +25,7 @@ export const products: Product[] = [
   brand: "Ignite",
   puffs: "8000",
   inStock: true,
-  flavors: ["Berry Mix", "Strawberry Ice", "Mango Ice", "Ice Mint"]
+  flavors: ["Cactus", "Strawberry Ice", "Banana Ice", "Ice Mint", "Passion Fruit Sour Kiwi", "Menthol", "Blueberry Ice"]
 },
 {
   id: "ignite-v150-15k",
@@ -37,7 +37,7 @@ export const products: Product[] = [
   brand: "Ignite",
   puffs: "15000",
   inStock: true,
-  flavors: ["Ice Mint", "Berry Mix", "Banana Ice", "Grape Ice"]
+  flavors: ["Ice Mint", "Blue Dream", "Strawberry Apple Watermelon", "Dragon Fruit Lemonade", "Pepermint Cream", "Sour Raspberry", "Watermelon Mix", "Cherry Banana", "Watermelon Ice", "Menthol", "Pineapple Ice"]
 },
   {
   id: "ignite-v250-25k",
@@ -49,7 +49,7 @@ export const products: Product[] = [
   brand: "Ignite",
   puffs: "25000",
   inStock: true,
-  flavors: ["Ice Mint", "Berry Mix", "Banana Ice", "Grape Ice"]
+  flavors: ["Ice Mint", "Cactus Lime Soda", "Banana Ice", "Watermelon Ice", "Grape Ice", "Strawberry Kiwi", "Banana Coconut Water", "Blueberry Ice", "Menthol", "Sweet and Sour Pomegranate", "Pineapple Mango","Strawberry Ice"]
 },
 {
   id: "ignite-v400-40k",
@@ -61,7 +61,7 @@ export const products: Product[] = [
   brand: "Ignite",
   puffs: "40000",
   inStock: true,
-  flavors: ["Ice Mint", "Mango Ice", "Berry Mix", "Watermelon Bubblegum"]
+  flavors: ["Ice Mint", "Strawberry Ice", "Grape Ice", "Menthol", "Peach Grape", "Watermelon Ice", "Strawberry Watermelon Ice", "Blueberry Ice"]
 },
   // ELF BAR
   {

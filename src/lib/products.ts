@@ -254,6 +254,7 @@ export const products: Product[] = [
     image: "/ADJUST40K.png",
     category: "pod",
     brand: "Adjust",
+    puffs: "40000",
     inStock: true,
     flavors: []
   },

@@ -193,9 +193,22 @@ export const products: Product[] = [
 
   // OXBAR
   {
+    id: "oxbar-9.5k",
+    name: "OXBAR 9.5K",
+    description: 9.500 PUFFS",
+    price: 74.90,
+    image: "https://images.unsplash.com/photo-1606941525941-8b15e6a5c4f0?w=400&h=400&fit=crop",
+    category: "pod",
+    brand: "Oxbar",
+    puffs: "9500",
+    inStock: true,
+    flavors: ["Mint Ice", "Strawberry", "Grape"]
+  },
+
+  {
     id: "oxbar-10k",
     name: "OXBAR 10K",
-    description: "10.000 PUFFS",
+    description: 10.000 PUFFS",
     price: 79.90,
     image: "https://images.unsplash.com/photo-1606941525941-8b15e6a5c4f0?w=400&h=400&fit=crop",
     category: "pod",
@@ -204,11 +217,12 @@ export const products: Product[] = [
     inStock: true,
     flavors: ["Mint Ice", "Strawberry", "Grape"]
   },
+  
   {
     id: "oxbar-30k",
     name: "OXBAR 30K",
-    description: "30.000 PUFFS - Ultra Duração",
-    price: 149.90,
+    description: "30.000 PUFFS",
+    price: 104.90,
     image: "https://images.unsplash.com/photo-1606941525941-8b15e6a5c4f0?w=400&h=400&fit=crop",
     category: "pod",
     brand: "Oxbar",

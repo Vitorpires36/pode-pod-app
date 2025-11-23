@@ -287,21 +287,23 @@ export const products: Product[] = [
 
  
 
-  // BEM BOLADO
+
+  // TABACARIA
+
+    // BEM BOLADO
   {
     id: "bem-bolado-6k",
     name: "BEM BOLADO 6K",
     description: "6.000 PUFFS",
     price: 59.90,
     image: "https://images.unsplash.com/photo-1606941525941-8b15e6a5c4f0?w=400&h=400&fit=crop",
-    category: "pod",
+    category: "tabacaria",
     brand: "Bem Bolado",
     puffs: "6000",
     inStock: true,
     flavors: ["Morango", "Uva", "Melancia"]
   },
 
-  // TABACARIA
   {
     id: "essencia-zomo-30ml",
     name: "ESSÊNCIA ZOMO 30ML",

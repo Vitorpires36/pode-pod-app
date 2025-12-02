@@ -245,7 +245,7 @@ export const products: Product[] = [
     "Rainbow Sherbet",
     "Sour Apple Ice"
   ]
-}
+},
   {
   id: "lostmary-30000",
   name: "LOST MARY 30K",
@@ -274,7 +274,7 @@ export const products: Product[] = [
     "Watermelon B Pop",
     "Watermelon Ice"
   ]
-}
+},
 
   // OXBAR
  {

@@ -34,7 +34,7 @@ const Index = () => {
           <p className="text-center text-sm text-muted-foreground">
             IGNITE - ELFBAR - OXBAR - SEX ADDICT - ADJUST<br className="sm:hidden" />
             <span className="hidden sm:inline"> • </span>
-            LOSTMARY - FUNKYLANDS - BEM BOLADO - NIKBAR
+            LOSTMARY - FUNKYLANDS - NIKBAR
           </p>
         </div>
       </div>
@@ -79,20 +79,6 @@ const Index = () => {
           </div>
         )}
       </main>
-
-      {/* Seção Tabacaria */}
-      <section className="bg-gradient-to-b from-background to-card py-12 border-t-2 border-accent">
-        <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-bold text-accent mb-6 text-center">
-            HEAD SHOP CAN SMOKE
-          </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-            {tabacariaProducts.map((product) => (
-              <ProductCard key={product.id} product={product} isTabacaria />
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Footer */}
       <footer className="bg-black text-white text-center py-6 mt-12 border-t-2 border-primary">

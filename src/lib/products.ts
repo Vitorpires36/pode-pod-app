@@ -277,18 +277,7 @@ export const products: Product[] = [
 },
 
   // OXBAR
- {
-    id: "oxbar-95k",
-    name: "OXBAR 9.5K",
-    description: "9.500 PUFFS",
-    price: 74.90,
-    image: "/OXBAR95K.png",
-    category: "pod",
-    brand: "Oxbar",
-    puffs: "9500",
-    inStock: true,
-    flavors: ["Mint Ice", "Strawberry", "Grape"]
-  },
+ 
 
   {
     id: "oxbar-10k",
@@ -300,7 +289,7 @@ export const products: Product[] = [
     brand: "Oxbar",
     puffs: "10000",
     inStock: true,
-    flavors: ["Mint Ice", "Strawberry", "Grape"]
+    flavors: ["Fruit Paradise", "Mango Bery Lemonade", "Pink Burst Chew", "Razz Pineapple", "Splash Bros Lemonade", "Wap Drops","Watermelon Remix Ice", "Mighty Mint"]
   },
   
   {
@@ -313,7 +302,7 @@ export const products: Product[] = [
     brand: "Oxbar",
     puffs: "30000",
     inStock: true,
-    flavors: ["Blue Razz", "Watermelon Ice", "Mango Ice"]
+    flavors: ["Blueberry Raspberry Lemon", "Mr Bull", "Frosty Mint","Peach Blue Razz", "Sour Apple Ice", "Sour Fruit Drops","Strawberry Fudge", "Strawberry Watermelon Dragonfruit", "Strawberry Watermelon Peach","Watermelon Gumdrop", "Watermelon Mint", "White Grape","Grand Purple", "Oxlove", "Strawberry Watermelon","Double Apple", "Raspberry Lemon", "Paradise Grape","Grape Peach", "Passion Kiwi", "Fanta Strawberry","Sour Mango","Blackcurrant Lemon Ice","Red Ice","Blue Raspberry Lemon","Fresh Mint" ]
   },
 
   // SEX ADDICT

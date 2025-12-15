@@ -58,7 +58,7 @@ export const Chatbot = () => {
         
         if (option === 'Falar com atendente') {
           setTimeout(() => {
-            window.open('https://wa.me/5511999999999?text=Olá! Vim pelo chatbot e preciso de ajuda.', '_blank');
+            window.open('https://wa.me/5511981878093?text=Olá! Vim pelo chatbot e preciso de ajuda.', '_blank');
           }, 1000);
         }
       }

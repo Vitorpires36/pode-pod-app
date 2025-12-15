@@ -55,7 +55,7 @@ export const products: Product[] = [
   id: "ignite-v400-40k",
   name: "IGNITE V400 40K",
   description: "40.000 PUFFS - Ultra bateria + fluxo ajustável",
-  price: 129.90,
+  price: 124.90,
   image: "/IGNITEV400.png",
   category: "pod",
   brand: "Ignite",

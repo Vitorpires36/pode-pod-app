@@ -19,7 +19,7 @@ export const products: Product[] = [
   id: "ignite-v80-8k",
   name: "IGNITE V80 8K",
   description: "8.000 PUFFS - Fluxo de ar suave + alta durabilidade",
-  price: 59.90,
+  price: 89.90,
   image: "/IGNITEV80.png",
   category: "pod",
   brand: "Ignite",

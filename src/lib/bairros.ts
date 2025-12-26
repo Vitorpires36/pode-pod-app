@@ -1,5 +1,4 @@
-esse é o codigo da parte de entrgas, me ajude a introduzir o que pedi : // src/lib/bairros.ts
-
+// src/lib/bairros.ts
 export interface BairroSP {
   nome: string;
   distanciaKm: number;

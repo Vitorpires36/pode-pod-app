@@ -1,4 +1,4 @@
-// src/lib/bairros.ts
+esse é o codigo da parte de entrgas, me ajude a introduzir o que pedi : // src/lib/bairros.ts
 
 export interface BairroSP {
   nome: string;
@@ -12,7 +12,7 @@ export interface BairroSP {
 // CONFIGURAÇÃO DE MARGEM
 // =====================
 
-// Margem fixa garantida por entrega (Uber / logística)
+// Margem fixa garantida por entrega
 export const MARGEM_FIXA_ENTREGA = 15;
 
 // Percentual sobre o valor dos produtos
@@ -22,27 +22,9 @@ export const MARGEM_PERCENTUAL_PRODUTOS = 0.03; // 3%
 export const TETO_PERCENTUAL_ENTREGA = 10;
 
 // =====================
-// FRETE FULL SP
-// =====================
-
-export const FRETE_FULL_SP_VALOR = 15.0;
-export const FRETE_FULL_SP_HORA_LIMITE = 12; // meio-dia
-
-export function freteFullSpDisponivel(dataAtual: Date = new Date()): boolean {
-  return dataAtual.getHours() < FRETE_FULL_SP_HORA_LIMITE;
-}
-
-// =====================
-// TIPOS DE FRETE
-// =====================
-
-export type TipoFrete = 'DINAMICO' | 'FULL_SP';
-
-// =====================
 // BAIRROS / REGIÕES ATENDIDAS
 // (valores base já dobrados)
 // =====================
-
 export const BAIRROS_SP: BairroSP[] = [
   // ========= CENTRO =========
   { nome: "República", distanciaKm: 1.8, zona: "Centro", tempoEntregaMin: 8, valorBase: 25.0 },
@@ -122,7 +104,6 @@ export const BAIRROS_SP: BairroSP[] = [
 // =====================
 // UTILITÁRIOS
 // =====================
-
 export const ZONAS = ['Todas', 'Centro', 'Oeste', 'Sul', 'Norte', 'Leste'] as const;
 
 export function getZonaColor(zona: string): string {
@@ -142,37 +123,21 @@ export function buscarBairroPorNome(nome: string): BairroSP | undefined {
   );
 }
 
-// =====================
-// CÁLCULO DE FRETE (UNIFICADO)
-// =====================
-
-export function calcularFrete(
-  tipo: TipoFrete,
-  params: {
-    bairro?: BairroSP;
-    valorProdutos: number;
-    dataAtual?: Date;
-  }
+/**
+ * Cálculo final da entrega (MODELO HÍBRIDO)
+ */
+export function calcularValorEntrega(
+  bairro: BairroSP,
+  valorProdutos: number
 ): number {
-  if (tipo === 'FULL_SP') {
-    if (!freteFullSpDisponivel(params.dataAtual)) {
-      throw new Error('Frete Full SP indisponível após 12h');
-    }
-    return FRETE_FULL_SP_VALOR;
-  }
-
-  if (!params.bairro) {
-    throw new Error('Bairro obrigatório para frete dinâmico');
-  }
-
   const percentual = Math.min(
-    params.valorProdutos * MARGEM_PERCENTUAL_PRODUTOS,
+    valorProdutos * MARGEM_PERCENTUAL_PRODUTOS,
     TETO_PERCENTUAL_ENTREGA
   );
 
   return Number(
     (
-      params.bairro.valorBase +
+      bairro.valorBase +
       MARGEM_FIXA_ENTREGA +
       percentual
     ).toFixed(2)

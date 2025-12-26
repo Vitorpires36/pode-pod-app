@@ -63,6 +63,33 @@ export const products: Product[] = [
   inStock: true,
   flavors: ["Ice Mint", "Strawberry Ice", "Grape Ice", "Menthol", "Peach Grape", "Watermelon Ice", "Strawberry Watermelon Ice", "Blueberry Ice"]
 },
+  {
+  id: "ignite-v400-40k",
+  name: "IGNITE V400 MIX",
+  description: "40.000 PUFFS",
+  price: 124.90,
+  image: "/IGNITEV400MIX.png",
+  category: "pod",
+  brand: "Ignite",
+  puffs: "40000",
+  inStock: true,
+  flavors: [
+  "Acai Ice + Watermelon Ice",
+  "Aloe Grape + Strawberry Watermelon Ice",
+  "Apple Ice + Strawberry Watermelon",
+  "Banana Ice + Strawberry Ice",
+  "Blueberry Ice + Raspberry Blackberry",
+  "Cherry Ice + Watermelon Ice",
+  "Grape Ice + Strawberry Ice",
+  "Icy Mint + Peach Grape",
+  "Mango Ice + Peach Watermelon Ice",
+  "Orange Ice + Strawberry Ice",
+  "Pineapple Ice + Passion Fruit Sour Kiwi",
+  "Strawberry Ice + Pineapple Mango Ice",
+  "Watermelon Ice + Grape Ice",
+  "Strawberry Mango Ice + Banana Ice"
+]
+},
   // ELF BAR
   {
     id: "elfbar-ew9000",

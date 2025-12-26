@@ -11,7 +11,7 @@ const Index = () => {
   const podProducts = products.filter(p => p.category === 'pod');
   const tabacariaProducts = products.filter(p => p.category === 'tabacaria');
   
-  const brands = ['Ignite', 'Elf Bar', 'Lost Mary', 'Oxbar', 'Sex Addict', 'Adjust', 'Funkylands', 'Bem Bolado', 'Nikbar'];
+  const brands = ['Ignite', 'Elf Bar', 'Lost Mary', 'Oxbar', 'Sex Addict', 'Adjust', 'Nikbar'];
   
   const filteredPods = selectedBrand === 'all' 
     ? podProducts 
@@ -34,7 +34,7 @@ const Index = () => {
           <p className="text-center text-sm text-muted-foreground">
             IGNITE - ELFBAR - OXBAR - SEX ADDICT - ADJUST<br className="sm:hidden" />
             <span className="hidden sm:inline"> • </span>
-            LOSTMARY - FUNKYLANDS - NIKBAR
+            LOSTMARY  - NIKBAR
           </p>
         </div>
       </div>

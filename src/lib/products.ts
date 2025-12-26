@@ -410,6 +410,7 @@ export const products: Product[] = [
     description: "CABO USB-C",
     price: 15.90,
     image: "/CABOTPC.png",
+    category: "pod",
     inStock: true,
     flavors: ["branco"]
   },

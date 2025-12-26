@@ -294,7 +294,7 @@ export const products: Product[] = [
   id: "lostmary-30000",
   name: "LOST MARY 30K",
   description: "30.000 PUFFS",
-  price: 84.90,
+  price: 89.90,
   image: "/LOSTMARY30K.png",
   category: "pod",
   brand: "Lost Mary",

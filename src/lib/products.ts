@@ -178,6 +178,35 @@ export const products: Product[] = [
     "Watermelon Ice"
   ]
 },
+ {
+  id: "elfbar-45000",
+  name: "ELFBAR BC PRO 45K",
+  description: "45.000 PUFFS",
+  price: 134.90,
+  image: "/ELFBARBCPRO45K.png",
+  category: "pod",
+  brand: "Elf Bar",
+  puffs: "45000",
+  inStock: true,
+  flavors: [
+    "Americano Ice",
+    "Blueberry Strawberry Coconut Ice",
+    "Cool Menthol",
+    "Grape Ice",
+    "Grape Twist",
+    "Green Apple Ice",
+    "Kiwi Passion Fruit Guava",
+    "Mango Magic",
+    "Miami Mint",
+    "Pineapple POM",
+    "Strawberry Ice",
+    "Strawberry Kiwi",
+    "Tropical Baja",
+    "Watermelon Ice",
+    "Watermelon Peach Frost"
+  ]
+},
+
 {
   id: "elfbar-400000",
   name: "ELFBAR 40K ICE KING",

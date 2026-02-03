@@ -7,7 +7,7 @@ export const products: Product[] = [
   id: "ignite-v50-5k",
   name: "IGNITE V55 SLIM",
   description: "5.000 PUFFS - Compacto e potente",
-  price: 74.90,
+  price: 84.90,
   image: "/IGNITEV55.png",
   category: "pod",
   brand: "Ignite",

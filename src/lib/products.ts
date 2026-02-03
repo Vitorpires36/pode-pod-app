@@ -183,7 +183,7 @@ export const products: Product[] = [
   name: "ELFBAR BC PRO 45K",
   description: "45.000 PUFFS",
   price: 134.90,
-  image: "/ELFBARBCPRO45K.png",
+  image: "/ELFBARBCPRO40K.png",
   category: "pod",
   brand: "Elf Bar",
   puffs: "45000",

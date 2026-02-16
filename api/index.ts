@@ -87,24 +87,55 @@ app.post('/api/bairros', async (req: Request, res: Response) => {
 // Orders / Sales
 app.post('/api/sales', async (req: Request, res: Response) => {
   try {
-    const { customer, items, total, frete, paymentMethod, status } = req.body;
-    
+    const { customer, customer_name, items, total, frete, paymentMethod, status, sale_date } = req.body;
+
+    // Normalize customer: can be object or string
+    const customerObj = (typeof customer === 'string' && customer.length)
+      ? { name: customer }
+      : (customer && typeof customer === 'object') ? customer : { name: customer_name || null };
+
+    // Normalize items: accept array or JSON string
+    let itemsJson: any = items;
+    if (typeof items === 'string') {
+      try { itemsJson = JSON.parse(items); } catch { itemsJson = [] }
+    }
+
+    const custName = customer_name || (customerObj && customerObj.name) || null;
+
     await NeonDatabase.query(`
-      INSERT INTO orders (customer, items, total, frete, "paymentMethod", status)
-      VALUES ($1, $2, $3, $4, $5, $6)
+      INSERT INTO orders (customer, items, total, frete, "paymentMethod", status, customer_name, sale_date)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
     `, [
-      JSON.stringify(customer),
-      JSON.stringify(items),
-      total,
-      frete,
-      paymentMethod,
-      status || 'pending'
+      JSON.stringify(customerObj),
+      JSON.stringify(itemsJson),
+      total || 0,
+      frete || 0,
+      paymentMethod || null,
+      status || 'pending',
+      custName,
+      sale_date || null
     ]);
-    
+
     res.json({ success: true });
   } catch (error) {
     console.error('Erro ao salvar pedido:', error);
     res.status(500).json({ error: 'Erro ao salvar pedido' });
+  }
+});
+
+// Get sales (orders)
+app.get('/api/sales', async (req: Request, res: Response) => {
+  try {
+    const rows = await NeonDatabase.query(`
+      SELECT id, customer, customer_name, items, total, frete, "paymentMethod", status, sale_date, created_at
+      FROM orders
+      ORDER BY created_at DESC
+      LIMIT 500
+    `);
+    res.json(rows);
+  } catch (error) {
+    console.error('Erro ao buscar pedidos:', error);
+    res.status(500).json({ error: 'Erro ao buscar pedidos' });
   }
 });
 
